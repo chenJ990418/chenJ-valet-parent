@@ -3,7 +3,6 @@ package com.chenJ.valet.mgr.service.impl;
 import com.chenJ.valet.customer.client.CustomerInfoFeignClient;
 import com.chenJ.valet.mgr.service.CustomerInfoService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Slf4j
@@ -11,7 +10,7 @@ import org.springframework.stereotype.Service;
 @SuppressWarnings({"unchecked", "rawtypes"})
 public class CustomerInfoServiceImpl implements CustomerInfoService {
 
-    @Autowired
+    @Resource
     private CustomerInfoFeignClient customerInfoFeignClient;
 
 

@@ -5,7 +5,6 @@ import com.chenJ.valet.model.entity.system.SysPost;
 import com.chenJ.valet.model.query.system.SysPostQuery;
 import com.chenJ.valet.model.vo.base.PageVo;
 import com.chenJ.valet.system.client.SysPostFeignClient;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,7 +13,7 @@ import java.util.List;
 @SuppressWarnings({"unchecked", "rawtypes"})
 public class SysPostServiceImpl implements SysPostService {
 
-    @Autowired
+    @Resource
     private SysPostFeignClient sysPostFeignClient;
 
     @Override

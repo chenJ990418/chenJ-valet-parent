@@ -8,7 +8,6 @@ import com.chenJ.valet.model.entity.system.SysMenu;
 import com.chenJ.valet.model.vo.system.AssginMenuVo;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +18,7 @@ import java.util.List;
 @RequestMapping("/sysMenu")
 public class SysMenuController {
 
-    @Autowired
+    @Resource
     private SysMenuService sysMenuService;
 
     @PreAuthorize("hasAuthority('bnt.sysMenu.list')")

@@ -5,13 +5,12 @@ import com.chenJ.valet.model.entity.system.SysUser;
 import com.chenJ.valet.model.query.system.SysUserQuery;
 import com.chenJ.valet.model.vo.base.PageVo;
 import com.chenJ.valet.system.client.SysUserFeignClient;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class SysUserServiceImpl implements SysUserService {
 
-    @Autowired
+    @Resource
     private SysUserFeignClient sysUserFeignClient;
 
     @Override

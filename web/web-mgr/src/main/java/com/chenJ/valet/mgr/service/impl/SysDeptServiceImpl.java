@@ -3,7 +3,6 @@ package com.chenJ.valet.mgr.service.impl;
 import com.chenJ.valet.mgr.service.SysDeptService;
 import com.chenJ.valet.model.entity.system.SysDept;
 import com.chenJ.valet.system.client.SysDeptFeignClient;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,7 +11,7 @@ import java.util.List;
 @SuppressWarnings({"unchecked", "rawtypes"})
 public class SysDeptServiceImpl implements SysDeptService {
 
-    @Autowired
+    @Resource
     private SysDeptFeignClient sysDeptFeignClient;
 
 

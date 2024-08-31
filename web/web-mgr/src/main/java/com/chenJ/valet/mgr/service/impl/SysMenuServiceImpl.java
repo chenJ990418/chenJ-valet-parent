@@ -4,7 +4,6 @@ import com.chenJ.valet.mgr.service.SysMenuService;
 import com.chenJ.valet.model.entity.system.SysMenu;
 import com.chenJ.valet.model.vo.system.AssginMenuVo;
 import com.chenJ.valet.system.client.SysMenuFeignClient;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,7 +11,7 @@ import java.util.List;
 @Service
 public class SysMenuServiceImpl implements SysMenuService {
 
-    @Autowired
+    @Resource
     private SysMenuFeignClient sysMenuFeignClient;
 
     @Override

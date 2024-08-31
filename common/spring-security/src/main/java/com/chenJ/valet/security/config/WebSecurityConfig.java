@@ -4,7 +4,6 @@ import com.chenJ.valet.security.custom.CustomMd5PasswordEncoder;
 import com.chenJ.valet.security.fillter.TokenAuthenticationFilter;
 import com.chenJ.valet.security.fillter.TokenLoginFilter;
 import com.chenJ.valet.system.client.SysLoginLogFeignClient;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -26,19 +25,19 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableMethodSecurity(securedEnabled = true, jsr250Enabled = true)
 public class WebSecurityConfig {
 
-    @Autowired
+    @Resource
     private UserDetailsService userDetailsService;
 
-    @Autowired
+    @Resource
     private CustomMd5PasswordEncoder customMd5PasswordEncoder;
 
-    @Autowired
+    @Resource
     private RedisTemplate redisTemplate;
 
-    @Autowired
+    @Resource
     private SysLoginLogFeignClient sysLoginLogFeignClient;
 
-    @Autowired
+    @Resource
     private AuthenticationConfiguration authenticationConfiguration;
 
     @Bean

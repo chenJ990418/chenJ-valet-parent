@@ -5,14 +5,13 @@ import com.chenJ.valet.model.entity.system.SysLoginLog;
 import com.chenJ.valet.model.query.system.SysLoginLogQuery;
 import com.chenJ.valet.model.vo.base.PageVo;
 import com.chenJ.valet.system.client.SysLoginLogFeignClient;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 @SuppressWarnings({"unchecked", "rawtypes"})
 public class SysLoginLogServiceImpl implements SysLoginLogService {
 
-    @Autowired
+    @Resource
     private SysLoginLogFeignClient sysLoginLogFeignClient;
 
     @Override

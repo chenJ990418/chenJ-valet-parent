@@ -6,7 +6,6 @@ import com.chenJ.valet.model.query.system.SysRoleQuery;
 import com.chenJ.valet.model.vo.base.PageVo;
 import com.chenJ.valet.model.vo.system.AssginRoleVo;
 import com.chenJ.valet.system.client.SysRoleFeignClient;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,7 +14,7 @@ import java.util.Map;
 @Service
 public class SysRoleServiceImpl implements SysRoleService {
 
-    @Autowired
+    @Resource
     private SysRoleFeignClient sysRoleFeignClient;
 
     @Override

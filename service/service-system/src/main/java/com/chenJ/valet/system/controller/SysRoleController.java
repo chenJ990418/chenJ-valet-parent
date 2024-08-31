@@ -11,7 +11,6 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,7 +23,7 @@ import java.util.Map;
 @RequestMapping("/sysRole")
 public class SysRoleController {
 
-    @Autowired
+    @Resource
     private SysRoleService sysRoleService;
 
     @Operation(summary = "获取全部角色列表")

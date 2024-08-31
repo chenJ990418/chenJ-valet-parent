@@ -13,7 +13,6 @@ import com.chenJ.valet.system.helper.MenuHelper;
 import com.chenJ.valet.system.mapper.SysMenuMapper;
 import com.chenJ.valet.system.mapper.SysRoleMenuMapper;
 import com.chenJ.valet.system.service.SysMenuService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
@@ -27,10 +26,10 @@ import java.util.stream.Collectors;
 @Service
 public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> implements SysMenuService {
 
-    @Autowired
+    @Resource
     private SysMenuMapper sysMenuMapper;
 
-    @Autowired
+    @Resource
     private SysRoleMenuMapper sysRoleMenuMapper;
 
     @Override

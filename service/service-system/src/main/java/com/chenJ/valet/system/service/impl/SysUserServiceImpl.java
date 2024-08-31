@@ -11,7 +11,6 @@ import com.chenJ.valet.model.vo.system.RouterVo;
 import com.chenJ.valet.system.mapper.SysUserMapper;
 import com.chenJ.valet.system.service.SysMenuService;
 import com.chenJ.valet.system.service.SysUserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,10 +22,10 @@ import java.util.Map;
 @Service
 public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> implements SysUserService {
 
-    @Autowired
+    @Resource
     private SysUserMapper sysUserMapper;
 
-    @Autowired
+    @Resource
     private SysMenuService sysMenuService;
 
     @Override

@@ -7,7 +7,6 @@ import com.chenJ.valet.mgr.service.SysDeptService;
 import com.chenJ.valet.model.entity.system.SysDept;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 @SuppressWarnings({"unchecked", "rawtypes"})
 public class SysDeptController {
 
-    @Autowired
+    @Resource
     private SysDeptService sysDeptService;
 
     @Operation(summary = "获取")

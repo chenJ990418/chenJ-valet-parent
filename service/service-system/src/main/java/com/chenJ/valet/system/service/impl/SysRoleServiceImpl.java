@@ -12,7 +12,6 @@ import com.chenJ.valet.model.vo.system.AssginRoleVo;
 import com.chenJ.valet.system.mapper.SysRoleMapper;
 import com.chenJ.valet.system.mapper.SysUserRoleMapper;
 import com.chenJ.valet.system.service.SysRoleService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,10 +24,10 @@ import java.util.stream.Collectors;
 @Service
 public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> implements SysRoleService {
 
-    @Autowired
+    @Resource
     private SysRoleMapper sysRoleMapper;
 
-    @Autowired
+    @Resource
     private SysUserRoleMapper sysUserRoleMapper;
 
     @Override

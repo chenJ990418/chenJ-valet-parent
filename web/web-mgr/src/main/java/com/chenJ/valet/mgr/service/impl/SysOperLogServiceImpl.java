@@ -5,14 +5,13 @@ import com.chenJ.valet.model.entity.system.SysOperLog;
 import com.chenJ.valet.model.query.system.SysOperLogQuery;
 import com.chenJ.valet.model.vo.base.PageVo;
 import com.chenJ.valet.system.client.SysOperLogFeignClient;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 @SuppressWarnings({"unchecked", "rawtypes"})
 public class SysOperLogServiceImpl implements SysOperLogService {
 
-    @Autowired
+    @Resource
     private SysOperLogFeignClient sysOperLogFeignClient;
 
     @Override
