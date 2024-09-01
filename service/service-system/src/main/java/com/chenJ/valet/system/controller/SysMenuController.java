@@ -6,6 +6,7 @@ import com.chenJ.valet.model.vo.system.AssginMenuVo;
 import com.chenJ.valet.system.service.SysMenuService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

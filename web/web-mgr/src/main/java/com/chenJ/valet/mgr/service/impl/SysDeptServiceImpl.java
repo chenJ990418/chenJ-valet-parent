@@ -3,6 +3,7 @@ package com.chenJ.valet.mgr.service.impl;
 import com.chenJ.valet.mgr.service.SysDeptService;
 import com.chenJ.valet.model.entity.system.SysDept;
 import com.chenJ.valet.system.client.SysDeptFeignClient;
+import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

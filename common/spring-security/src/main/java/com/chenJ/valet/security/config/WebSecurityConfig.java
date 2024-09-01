@@ -4,6 +4,7 @@ import com.chenJ.valet.security.custom.CustomMd5PasswordEncoder;
 import com.chenJ.valet.security.fillter.TokenAuthenticationFilter;
 import com.chenJ.valet.security.fillter.TokenLoginFilter;
 import com.chenJ.valet.system.client.SysLoginLogFeignClient;
+import jakarta.annotation.Resource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -83,8 +84,6 @@ public class WebSecurityConfig {
                 .addFilterBefore(new TokenAuthenticationFilter(redisTemplate), UsernamePasswordAuthenticationFilter.class)
                 .addFilter(new TokenLoginFilter(authenticationManager(authenticationConfiguration), redisTemplate, sysLoginLogFeignClient))
         ;
-
-
         return http.build();
     }
 

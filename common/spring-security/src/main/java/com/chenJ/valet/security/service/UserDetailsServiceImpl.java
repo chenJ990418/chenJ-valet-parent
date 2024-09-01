@@ -3,6 +3,7 @@ package com.chenJ.valet.security.service;
 import com.chenJ.valet.model.entity.system.SysUser;
 import com.chenJ.valet.security.custom.CustomUser;
 import com.chenJ.valet.system.client.SecurityLoginFeignClient;
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

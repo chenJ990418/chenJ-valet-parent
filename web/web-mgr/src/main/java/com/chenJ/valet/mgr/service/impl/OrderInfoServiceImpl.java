@@ -2,6 +2,7 @@ package com.chenJ.valet.mgr.service.impl;
 
 import com.chenJ.valet.mgr.service.OrderInfoService;
 import com.chenJ.valet.order.client.OrderInfoFeignClient;
+import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 @Service

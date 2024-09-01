@@ -4,6 +4,7 @@ import com.chenJ.valet.common.result.Result;
 import com.chenJ.valet.customer.service.CustomerInfoService;
 import com.chenJ.valet.model.entity.customer.CustomerInfo;
 import io.swagger.v3.oas.annotations.Operation;
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

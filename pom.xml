@@ -7,7 +7,6 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>3.0.5</version>
-        <!-- 版本对应： https://start.spring.io/actuator/info -->
     </parent>
 
     <groupId>com.chenJ.valet</groupId>
@@ -25,7 +24,7 @@
     </modules>
 
     <properties>
-        <java.version>1.8</java.version>
+        <java.version>17</java.version>
         <cloud.version>2022.0.2</cloud.version>
         <alibaba.version>2022.0.0.0-RC2</alibaba.version>
         <mybatis-plus.version>3.5.3.1</mybatis-plus.version>
@@ -193,6 +192,36 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.13.0</version>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+            <!-- 配置maven-jar-plugin来压缩最终的jar包 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.4.2</version>
+                <configuration>
+                    <archive>
+                        <compress>true</compress>
+                    </archive>
+                </configuration>
+            </plugin>
+            <!-- 配置maven-dependency-plugin来排除不需要的依赖 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.8.0</version>
+                <configuration>
+                    <excludeGroupIds>
+                        <groupId>org.junit.vintage</groupId>
+                        <groupId>org.junit.jupiter</groupId>
+                    </excludeGroupIds>
+                    <excludeArtifactIds>
+                        <artifactId>junit-vintage-engine</artifactId>
+                    </excludeArtifactIds>
+                </configuration>
             </plugin>
         </plugins>
     </build>

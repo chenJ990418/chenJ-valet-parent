@@ -6,6 +6,7 @@ import com.chenJ.valet.model.query.system.SysRoleQuery;
 import com.chenJ.valet.model.vo.base.PageVo;
 import com.chenJ.valet.model.vo.system.AssginRoleVo;
 import com.chenJ.valet.system.client.SysRoleFeignClient;
+import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

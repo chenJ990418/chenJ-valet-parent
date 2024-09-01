@@ -5,6 +5,7 @@ import com.chenJ.valet.model.entity.system.SysUser;
 import com.chenJ.valet.model.query.system.SysUserQuery;
 import com.chenJ.valet.model.vo.base.PageVo;
 import com.chenJ.valet.system.client.SysUserFeignClient;
+import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 @Service

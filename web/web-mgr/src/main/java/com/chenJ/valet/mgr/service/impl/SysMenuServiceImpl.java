@@ -4,6 +4,7 @@ import com.chenJ.valet.mgr.service.SysMenuService;
 import com.chenJ.valet.model.entity.system.SysMenu;
 import com.chenJ.valet.model.vo.system.AssginMenuVo;
 import com.chenJ.valet.system.client.SysMenuFeignClient;
+import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

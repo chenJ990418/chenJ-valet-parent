@@ -5,6 +5,7 @@ import com.chenJ.valet.model.entity.system.SysLoginLog;
 import com.chenJ.valet.model.query.system.SysLoginLogQuery;
 import com.chenJ.valet.model.vo.base.PageVo;
 import com.chenJ.valet.system.client.SysLoginLogFeignClient;
+import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 @Service

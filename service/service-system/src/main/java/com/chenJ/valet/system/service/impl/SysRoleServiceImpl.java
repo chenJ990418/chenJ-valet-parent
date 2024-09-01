@@ -12,6 +12,7 @@ import com.chenJ.valet.model.vo.system.AssginRoleVo;
 import com.chenJ.valet.system.mapper.SysRoleMapper;
 import com.chenJ.valet.system.mapper.SysUserRoleMapper;
 import com.chenJ.valet.system.service.SysRoleService;
+import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

@@ -5,6 +5,7 @@ import com.chenJ.valet.model.entity.system.SysPost;
 import com.chenJ.valet.model.query.system.SysPostQuery;
 import com.chenJ.valet.model.vo.base.PageVo;
 import com.chenJ.valet.system.client.SysPostFeignClient;
+import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

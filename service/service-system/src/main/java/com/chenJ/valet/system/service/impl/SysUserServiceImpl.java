@@ -11,6 +11,7 @@ import com.chenJ.valet.model.vo.system.RouterVo;
 import com.chenJ.valet.system.mapper.SysUserMapper;
 import com.chenJ.valet.system.service.SysMenuService;
 import com.chenJ.valet.system.service.SysUserService;
+import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
