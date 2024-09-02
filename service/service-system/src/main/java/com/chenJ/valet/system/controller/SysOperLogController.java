@@ -2,7 +2,7 @@ package com.chenJ.valet.system.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.chenJ.valet.common.result.Result;
-import com.chenJ.valet.model.entity.system.SysOperLog;
+import com.chenJ.valet.model.entity.system.SysOperLogDo;
 import com.chenJ.valet.model.query.system.SysOperLogQuery;
 import com.chenJ.valet.model.vo.base.PageVo;
 import com.chenJ.valet.system.service.SysOperLogService;
@@ -36,21 +36,21 @@ public class SysOperLogController {
 
             @Parameter(name = "sysOperLogVo", description = "查询对象", required = false)
             @RequestBody SysOperLogQuery sysOperLogQuery) {
-        Page<SysOperLog> pageParam = new Page<>(page, limit);
-        PageVo<SysOperLog> pageVo = sysOperLogService.findPage(pageParam, sysOperLogQuery);
+        Page<SysOperLogDo> pageParam = new Page<>(page, limit);
+        PageVo<SysOperLogDo> pageVo = sysOperLogService.findPage(pageParam, sysOperLogQuery);
         return Result.ok(pageVo);
     }
 
     @Operation(summary = "获取")
     @GetMapping("getById/{id}")
-    public Result<SysOperLog> getById(@PathVariable Long id) {
-        SysOperLog sysOperLog = sysOperLogService.getById(id);
+    public Result<SysOperLogDo> getById(@PathVariable Long id) {
+        SysOperLogDo sysOperLog = sysOperLogService.getById(id);
         return Result.ok(sysOperLog);
     }
 
     @Operation(summary = "记录日志")
     @PostMapping("saveSysLog")
-    public Result<Boolean> saveSysLog(@RequestBody SysOperLog sysOperLog) {
+    public Result<Boolean> saveSysLog(@RequestBody SysOperLogDo sysOperLog) {
         sysOperLogService.saveSysLog(sysOperLog);
         return Result.ok(true);
     }

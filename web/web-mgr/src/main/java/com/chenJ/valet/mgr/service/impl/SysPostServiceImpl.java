@@ -1,7 +1,7 @@
 package com.chenJ.valet.mgr.service.impl;
 
 import com.chenJ.valet.mgr.service.SysPostService;
-import com.chenJ.valet.model.entity.system.SysPost;
+import com.chenJ.valet.model.entity.system.SysPostDo;
 import com.chenJ.valet.model.query.system.SysPostQuery;
 import com.chenJ.valet.model.vo.base.PageVo;
 import com.chenJ.valet.system.client.SysPostFeignClient;
@@ -18,17 +18,17 @@ public class SysPostServiceImpl implements SysPostService {
     private SysPostFeignClient sysPostFeignClient;
 
     @Override
-    public SysPost getById(Long id) {
+    public SysPostDo getById(Long id) {
         return sysPostFeignClient.getById(id).getData();
     }
 
     @Override
-    public void save(SysPost sysPost) {
+    public void save(SysPostDo sysPost) {
         sysPostFeignClient.save(sysPost);
     }
 
     @Override
-    public void update(SysPost sysPost) {
+    public void update(SysPostDo sysPost) {
         sysPostFeignClient.update(sysPost);
     }
 
@@ -38,7 +38,7 @@ public class SysPostServiceImpl implements SysPostService {
     }
 
     @Override
-    public PageVo<SysPost> findPage(Long page, Long limit, SysPostQuery sysPostQuery) {
+    public PageVo<SysPostDo> findPage(Long page, Long limit, SysPostQuery sysPostQuery) {
         return sysPostFeignClient.findPage(page, limit, sysPostQuery).getData();
     }
 
@@ -48,7 +48,7 @@ public class SysPostServiceImpl implements SysPostService {
     }
 
     @Override
-    public List<SysPost> findAll() {
+    public List<SysPostDo> findAll() {
         return sysPostFeignClient.findAll().getData();
     }
 }

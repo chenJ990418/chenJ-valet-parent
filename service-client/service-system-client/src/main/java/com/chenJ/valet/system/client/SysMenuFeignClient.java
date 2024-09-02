@@ -1,7 +1,7 @@
 package com.chenJ.valet.system.client;
 
 import com.chenJ.valet.common.result.Result;
-import com.chenJ.valet.model.entity.system.SysMenu;
+import com.chenJ.valet.model.entity.system.SysMenuDo;
 import com.chenJ.valet.model.vo.system.AssginMenuVo;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
@@ -18,13 +18,13 @@ public interface SysMenuFeignClient {
      * @return
      */
     @GetMapping("/sysMenu/findNodes")
-    Result<List<SysMenu>> findNodes();
+    Result<List<SysMenuDo>> findNodes();
 
     @PostMapping("/sysMenu/save")
-    Result<Boolean> save(@RequestBody SysMenu sysMenu);
+    Result<Boolean> save(@RequestBody SysMenuDo sysMenu);
 
     @PutMapping("/sysMenu/update")
-    Result<Boolean> update(@RequestBody SysMenu permission);
+    Result<Boolean> update(@RequestBody SysMenuDo permission);
 
     @DeleteMapping("/sysMenu/remove/{id}")
     Result<Boolean> remove(@PathVariable Long id);
@@ -36,7 +36,7 @@ public interface SysMenuFeignClient {
      * @return
      */
     @GetMapping("/sysMenu/toAssign/{roleId}")
-    Result<List<SysMenu>> toAssign(@PathVariable Long roleId);
+    Result<List<SysMenuDo>> toAssign(@PathVariable Long roleId);
 
     /**
      * 给角色分配权限

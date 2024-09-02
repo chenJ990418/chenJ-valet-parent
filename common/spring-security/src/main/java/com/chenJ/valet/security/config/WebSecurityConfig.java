@@ -82,8 +82,7 @@ public class WebSecurityConfig {
                 .authenticationProvider(authenticationProvider())
                 // 添加token过滤器
                 .addFilterBefore(new TokenAuthenticationFilter(redisTemplate), UsernamePasswordAuthenticationFilter.class)
-                .addFilter(new TokenLoginFilter(authenticationManager(authenticationConfiguration), redisTemplate, sysLoginLogFeignClient))
-        ;
+                .addFilter(new TokenLoginFilter(authenticationManager(authenticationConfiguration), redisTemplate, sysLoginLogFeignClient));
         return http.build();
     }
 

@@ -5,7 +5,7 @@ import com.chenJ.valet.common.result.Result;
 import com.chenJ.valet.common.result.ResultCodeEnum;
 import com.chenJ.valet.common.util.IpUtil;
 import com.chenJ.valet.common.util.ResponseUtil;
-import com.chenJ.valet.model.entity.system.SysLoginLog;
+import com.chenJ.valet.model.entity.system.SysLoginLogDo;
 import com.chenJ.valet.model.vo.system.LoginVo;
 import com.chenJ.valet.security.custom.CustomUser;
 import com.chenJ.valet.system.client.SysLoginLogFeignClient;
@@ -93,7 +93,7 @@ public class TokenLoginFilter extends UsernamePasswordAuthenticationFilter {
         //redisTemplate.boundHashOps("admin:auth").put(customUser.getUsername(), customUser.getAuthorities());
 
         //记录日志
-        SysLoginLog sysLoginLog = new SysLoginLog();
+        SysLoginLogDo sysLoginLog = new SysLoginLogDo();
         sysLoginLog.setUsername(customUser.getUsername());
         sysLoginLog.setStatus(1);
         sysLoginLog.setIpaddr(IpUtil.getIpAddress(request));

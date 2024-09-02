@@ -1,16 +1,16 @@
 package com.chenJ.valet.mgr.service;
 
 
-import com.chenJ.valet.model.entity.system.SysMenu;
+import com.chenJ.valet.model.entity.system.SysMenuDo;
 import com.chenJ.valet.model.vo.system.AssginMenuVo;
 
 import java.util.List;
 
 public interface SysMenuService {
 
-    void save(SysMenu sysMenu);
+    void save(SysMenuDo sysMenu);
 
-    void update(SysMenu sysMenu);
+    void update(SysMenuDo sysMenu);
 
     void remove(Long id);
 
@@ -19,7 +19,7 @@ public interface SysMenuService {
      *
      * @return
      */
-    List<SysMenu> findNodes();
+    List<SysMenuDo> findNodes();
 
 
     /**
@@ -30,5 +30,5 @@ public interface SysMenuService {
     void doAssign(AssginMenuVo assginMenuVo);
 
 
-    List<SysMenu> toAssign(Long roleId);
+    List<SysMenuDo> toAssign(Long roleId);
 }

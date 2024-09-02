@@ -1,7 +1,7 @@
 package com.chenJ.valet.system.client;
 
 import com.chenJ.valet.common.result.Result;
-import com.chenJ.valet.model.entity.system.SysLoginLog;
+import com.chenJ.valet.model.entity.system.SysLoginLogDo;
 import com.chenJ.valet.model.query.system.SysLoginLogQuery;
 import com.chenJ.valet.model.vo.base.PageVo;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -21,13 +21,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 public interface SysLoginLogFeignClient {
 
     @PostMapping("/sysLoginLog/findPage/{page}/{limit}")
-    Result<PageVo<SysLoginLog>> findPage(
+    Result<PageVo<SysLoginLogDo>> findPage(
             @PathVariable("page") Long page,
             @PathVariable("limit") Long limit,
             @RequestBody SysLoginLogQuery sysLoginLogQuery);
 
     @GetMapping("/sysLoginLog/getById/{id}")
-    Result<SysLoginLog> getById(@PathVariable Long id);
+    Result<SysLoginLogDo> getById(@PathVariable Long id);
 
     /**
      * 记录登录日志
@@ -36,5 +36,5 @@ public interface SysLoginLogFeignClient {
      * @return
      */
     @PostMapping("/sysLoginLog/recordLoginLog")
-    Result<Boolean> recordLoginLog(@RequestBody SysLoginLog sysLoginLog);
+    Result<Boolean> recordLoginLog(@RequestBody SysLoginLogDo sysLoginLog);
 }

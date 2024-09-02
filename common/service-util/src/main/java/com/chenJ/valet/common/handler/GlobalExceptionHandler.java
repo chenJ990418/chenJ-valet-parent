@@ -1,6 +1,6 @@
 package com.chenJ.valet.common.handler;
 
-import com.chenJ.valet.common.execption.GuiguException;
+import com.chenJ.valet.common.execption.ValetException;
 import com.chenJ.valet.common.result.Result;
 import com.chenJ.valet.common.result.ResultCodeEnum;
 import feign.codec.DecodeException;
@@ -38,9 +38,9 @@ public class GlobalExceptionHandler {
      * @param e
      * @return
      */
-    @ExceptionHandler(GuiguException.class)
+    @ExceptionHandler(ValetException.class)
     @ResponseBody
-    public Result error(GuiguException e) {
+    public Result error(ValetException e) {
         e.printStackTrace();
         return Result.build(null, e.getCode(), e.getMessage());
     }

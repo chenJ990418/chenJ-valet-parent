@@ -1,7 +1,7 @@
 package com.chenJ.valet.mgr.service.impl;
 
 import com.chenJ.valet.mgr.service.SysRoleService;
-import com.chenJ.valet.model.entity.system.SysRole;
+import com.chenJ.valet.model.entity.system.SysRoleDo;
 import com.chenJ.valet.model.query.system.SysRoleQuery;
 import com.chenJ.valet.model.vo.base.PageVo;
 import com.chenJ.valet.model.vo.system.AssginRoleVo;
@@ -19,17 +19,17 @@ public class SysRoleServiceImpl implements SysRoleService {
     private SysRoleFeignClient sysRoleFeignClient;
 
     @Override
-    public SysRole getById(Long id) {
+    public SysRoleDo getById(Long id) {
         return sysRoleFeignClient.getById(id).getData();
     }
 
     @Override
-    public void save(SysRole sysRole) {
+    public void save(SysRoleDo sysRole) {
         sysRoleFeignClient.save(sysRole);
     }
 
     @Override
-    public void update(SysRole sysRole) {
+    public void update(SysRoleDo sysRole) {
         sysRoleFeignClient.update(sysRole);
     }
 
@@ -39,7 +39,7 @@ public class SysRoleServiceImpl implements SysRoleService {
     }
 
     @Override
-    public PageVo<SysRole> findPage(Long page, Long limit, SysRoleQuery roleQuery) {
+    public PageVo<SysRoleDo> findPage(Long page, Long limit, SysRoleQuery roleQuery) {
         return sysRoleFeignClient.findPage(page, limit, roleQuery).getData();
     }
 
@@ -59,7 +59,7 @@ public class SysRoleServiceImpl implements SysRoleService {
     }
 
     @Override
-    public List<SysRole> findAll() {
+    public List<SysRoleDo> findAll() {
         return sysRoleFeignClient.findAll().getData();
     }
 }

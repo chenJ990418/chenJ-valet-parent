@@ -2,7 +2,7 @@ package com.chenJ.valet.system.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.chenJ.valet.common.result.Result;
-import com.chenJ.valet.model.entity.system.SysLoginLog;
+import com.chenJ.valet.model.entity.system.SysLoginLogDo;
 import com.chenJ.valet.model.query.system.SysLoginLogQuery;
 import com.chenJ.valet.model.vo.base.PageVo;
 import com.chenJ.valet.system.service.SysLoginLogService;
@@ -26,7 +26,7 @@ public class SysLoginLogController {
 
     @Operation(summary = "获取分页列表")
     @PostMapping("findPage/{page}/{limit}")
-    public Result<PageVo<SysLoginLog>> findPage(
+    public Result<PageVo<SysLoginLogDo>> findPage(
             @Parameter(name = "page", description = "当前页码", required = true)
             @PathVariable Long page,
 
@@ -35,21 +35,21 @@ public class SysLoginLogController {
 
             @Parameter(name = "sysLoginLogVo", description = "查询对象", required = false)
             @RequestBody SysLoginLogQuery sysLoginLogQuery) {
-        Page<SysLoginLog> pageParam = new Page<>(page, limit);
-        PageVo<SysLoginLog> pageModel = sysLoginLogService.findPage(pageParam, sysLoginLogQuery);
+        Page<SysLoginLogDo> pageParam = new Page<>(page, limit);
+        PageVo<SysLoginLogDo> pageModel = sysLoginLogService.findPage(pageParam, sysLoginLogQuery);
         return Result.ok(pageModel);
     }
 
     @Operation(summary = "获取")
     @GetMapping("getById/{id}")
-    public Result<SysLoginLog> getById(@PathVariable Long id) {
-        SysLoginLog sysLoginLog = sysLoginLogService.getById(id);
+    public Result<SysLoginLogDo> getById(@PathVariable Long id) {
+        SysLoginLogDo sysLoginLog = sysLoginLogService.getById(id);
         return Result.ok(sysLoginLog);
     }
 
     @Operation(summary = "记录登录日志")
     @PostMapping("recordLoginLog")
-    public Result<Boolean> recordLoginLog(@RequestBody SysLoginLog sysLoginLog) {
+    public Result<Boolean> recordLoginLog(@RequestBody SysLoginLogDo sysLoginLog) {
         sysLoginLogService.recordLoginLog(sysLoginLog);
         return Result.ok(true);
     }

@@ -2,27 +2,27 @@ package com.chenJ.valet.system.service;
 
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.chenJ.valet.model.entity.system.SysMenu;
+import com.chenJ.valet.model.entity.system.SysMenuDo;
 import com.chenJ.valet.model.vo.system.AssginMenuVo;
 import com.chenJ.valet.model.vo.system.RouterVo;
 
 import java.util.List;
 
-public interface SysMenuService extends IService<SysMenu> {
+public interface SysMenuService extends IService<SysMenuDo> {
 
     /**
      * 菜单树形数据
      *
      * @return
      */
-    List<SysMenu> findNodes();
+    List<SysMenuDo> findNodes();
 
     /**
      * 根据角色获取授权权限数据
      *
      * @return
      */
-    List<SysMenu> findSysMenuByRoleId(Long roleId);
+    List<SysMenuDo> findSysMenuByRoleId(Long roleId);
 
     /**
      * 保存角色权限

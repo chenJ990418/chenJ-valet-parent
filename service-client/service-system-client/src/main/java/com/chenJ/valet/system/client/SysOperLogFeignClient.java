@@ -1,7 +1,7 @@
 package com.chenJ.valet.system.client;
 
 import com.chenJ.valet.common.result.Result;
-import com.chenJ.valet.model.entity.system.SysOperLog;
+import com.chenJ.valet.model.entity.system.SysOperLogDo;
 import com.chenJ.valet.model.query.system.SysOperLogQuery;
 import com.chenJ.valet.model.vo.base.PageVo;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -21,13 +21,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 public interface SysOperLogFeignClient {
 
     @PostMapping("/sysOperLog/findPage/{page}/{limit}")
-    public Result<PageVo<SysOperLog>> findPage(
+    public Result<PageVo<SysOperLogDo>> findPage(
             @PathVariable("page") Long page,
             @PathVariable("limit") Long limit,
             @RequestBody SysOperLogQuery sysOperLogQuery);
 
     @GetMapping("/sysOperLog/getById/{id}")
-    Result<SysOperLog> getById(@PathVariable Long id);
+    Result<SysOperLogDo> getById(@PathVariable Long id);
 
     /**
      * 记录日志
@@ -36,5 +36,5 @@ public interface SysOperLogFeignClient {
      * @return
      */
     @PostMapping("/sysOperLog/saveSysLog")
-    Result<Boolean> saveSysLog(@RequestBody SysOperLog sysOperLog);
+    Result<Boolean> saveSysLog(@RequestBody SysOperLogDo sysOperLog);
 }

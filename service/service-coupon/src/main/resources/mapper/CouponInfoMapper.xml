@@ -6,7 +6,7 @@
 
 <mapper namespace="com.chenJ.valet.coupon.mapper.CouponInfoMapper">
 
-    <resultMap id="couponInfoMap" type="com.chenJ.valet.model.entity.coupon.CouponInfo" autoMapping="true">
+    <resultMap id="couponInfoMap" type="com.chenJ.valet.model.entity.coupon.CouponInfoDo" autoMapping="true">
     </resultMap>
 
     <!-- 用于select查询公用抽取的列 -->

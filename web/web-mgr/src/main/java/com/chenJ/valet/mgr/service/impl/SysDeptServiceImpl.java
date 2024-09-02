@@ -1,7 +1,7 @@
 package com.chenJ.valet.mgr.service.impl;
 
 import com.chenJ.valet.mgr.service.SysDeptService;
-import com.chenJ.valet.model.entity.system.SysDept;
+import com.chenJ.valet.model.entity.system.SysDeptDo;
 import com.chenJ.valet.system.client.SysDeptFeignClient;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
@@ -17,12 +17,12 @@ public class SysDeptServiceImpl implements SysDeptService {
 
 
     @Override
-    public List<SysDept> findNodes() {
+    public List<SysDeptDo> findNodes() {
         return sysDeptFeignClient.findNodes().getData();
     }
 
     @Override
-    public List<SysDept> findUserNodes() {
+    public List<SysDeptDo> findUserNodes() {
         return sysDeptFeignClient.findUserNodes().getData();
     }
 
@@ -32,17 +32,17 @@ public class SysDeptServiceImpl implements SysDeptService {
     }
 
     @Override
-    public SysDept getById(Long id) {
+    public SysDeptDo getById(Long id) {
         return sysDeptFeignClient.getById(id).getData();
     }
 
     @Override
-    public void save(SysDept sysDept) {
+    public void save(SysDeptDo sysDept) {
         sysDeptFeignClient.save(sysDept);
     }
 
     @Override
-    public void update(SysDept sysDept) {
+    public void update(SysDeptDo sysDept) {
         sysDeptFeignClient.update(sysDept);
     }
 

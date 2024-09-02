@@ -1,7 +1,7 @@
 package com.chenJ.valet.system.client;
 
 import com.chenJ.valet.common.result.Result;
-import com.chenJ.valet.model.entity.system.SysRole;
+import com.chenJ.valet.model.entity.system.SysRoleDo;
 import com.chenJ.valet.model.query.system.SysRoleQuery;
 import com.chenJ.valet.model.vo.base.PageVo;
 import com.chenJ.valet.model.vo.system.AssginRoleVo;
@@ -22,7 +22,7 @@ public interface SysRoleFeignClient {
      * @return
      */
     @GetMapping("/sysRole/findAll")
-    Result<List<SysRole>> findAll();
+    Result<List<SysRoleDo>> findAll();
 
     /**
      * 获取分页列表
@@ -33,7 +33,7 @@ public interface SysRoleFeignClient {
      * @return
      */
     @PostMapping("/sysRole/findPage/{page}/{limit}")
-    Result<PageVo<SysRole>> findPage(
+    Result<PageVo<SysRoleDo>> findPage(
             @PathVariable("page") Long page,
             @PathVariable("limit") Long limit,
             @RequestBody SysRoleQuery roleQuery);
@@ -45,7 +45,7 @@ public interface SysRoleFeignClient {
      * @return
      */
     @GetMapping("/sysRole/getById/{id}")
-    Result<SysRole> getById(@PathVariable("id") Long id);
+    Result<SysRoleDo> getById(@PathVariable("id") Long id);
 
     /**
      * 新增角色
@@ -54,7 +54,7 @@ public interface SysRoleFeignClient {
      * @return
      */
     @PostMapping("/sysRole/save")
-    Result<Boolean> save(@RequestBody @Validated SysRole role);
+    Result<Boolean> save(@RequestBody @Validated SysRoleDo role);
 
     /**
      * 修改角色
@@ -63,7 +63,7 @@ public interface SysRoleFeignClient {
      * @return
      */
     @PutMapping("/sysRole/update")
-    Result<Boolean> update(@RequestBody SysRole role);
+    Result<Boolean> update(@RequestBody SysRoleDo role);
 
     /**
      * 删除角色

@@ -3,7 +3,7 @@ package com.chenJ.valet.common.aspect;
 import com.alibaba.fastjson.JSON;
 import com.chenJ.valet.common.annotation.Log;
 import com.chenJ.valet.common.util.IpUtil;
-import com.chenJ.valet.model.entity.system.SysOperLog;
+import com.chenJ.valet.model.entity.system.SysOperLogDo;
 import com.chenJ.valet.system.client.SysOperLogFeignClient;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
@@ -66,7 +66,7 @@ public class LogAspect {
             HttpServletRequest request = sra.getRequest();
 
             // *========数据库日志=========*//
-            SysOperLog operLog = new SysOperLog();
+            SysOperLogDo operLog = new SysOperLogDo();
             operLog.setStatus(1);
             // 请求的地址
             String ip = IpUtil.getIpAddress(request);//IpUtil.getIpAddr(ServletUtils.getRequest());
@@ -103,7 +103,7 @@ public class LogAspect {
      * @param operLog 操作日志
      * @throws Exception
      */
-    public void getControllerMethodDescription(JoinPoint joinPoint, Log log, SysOperLog operLog, Object jsonResult) throws Exception {
+    public void getControllerMethodDescription(JoinPoint joinPoint, Log log, SysOperLogDo operLog, Object jsonResult) throws Exception {
         // 设置action动作
         operLog.setBusinessType(log.businessType().name());
         // 设置标题
@@ -127,7 +127,7 @@ public class LogAspect {
      * @param operLog 操作日志
      * @throws Exception 异常
      */
-    private void setRequestValue(JoinPoint joinPoint, SysOperLog operLog) throws Exception {
+    private void setRequestValue(JoinPoint joinPoint, SysOperLogDo operLog) throws Exception {
         String requestMethod = operLog.getRequestMethod();
         if (HttpMethod.PUT.name().equals(requestMethod) || HttpMethod.POST.name().equals(requestMethod)) {
             String params = argsArrayToString(joinPoint.getArgs());

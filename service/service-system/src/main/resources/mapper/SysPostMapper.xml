@@ -6,7 +6,7 @@
 
 <mapper namespace="com.chenJ.valet.system.mapper.SysPostMapper">
 
-    <resultMap id="sysPostMap" type="com.chenJ.valet.model.entity.system.SysPost" autoMapping="true">
+    <resultMap id="sysPostMap" type="com.chenJ.valet.model.entity.system.SysPostDo" autoMapping="true">
     </resultMap>
 
     <!-- 用于select查询公用抽取的列 -->

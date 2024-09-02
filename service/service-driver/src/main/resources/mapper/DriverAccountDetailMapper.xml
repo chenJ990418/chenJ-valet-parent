@@ -6,7 +6,7 @@
 
 <mapper namespace="com.chenJ.valet.driver.mapper.DriverAccountDetailMapper">
 
-    <resultMap id="RechargeInfoMap" type="com.chenJ.valet.model.entity.driver.DriverAccountDetail" autoMapping="true">
+    <resultMap id="RechargeInfoMap" type="com.chenJ.valet.model.entity.driver.DriverAccountDetailDo" autoMapping="true">
     </resultMap>
 
     <sql id="columns">

@@ -1,7 +1,7 @@
 package com.chenJ.valet.system.client;
 
 import com.chenJ.valet.common.result.Result;
-import com.chenJ.valet.model.entity.system.SysUser;
+import com.chenJ.valet.model.entity.system.SysUserDo;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,7 +26,7 @@ public interface SecurityLoginFeignClient {
      * @return
      */
     @GetMapping("/securityLogin/getByUsername/{username}")
-    Result<SysUser> getByUsername(@PathVariable("username") String username);
+    Result<SysUserDo> getByUsername(@PathVariable("username") String username);
 
     /**
      * 获取用户按钮权限

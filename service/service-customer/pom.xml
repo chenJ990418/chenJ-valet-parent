@@ -18,14 +18,48 @@
     </properties>
 
     <dependencies>
+            <dependency>
+                <groupId>com.github.binarywang</groupId>
+                <artifactId>weixin-java-miniapp</artifactId>
+            </dependency>
     </dependencies>
 
     <build>
         <finalName>${project.artifactId}</finalName>
         <plugins>
             <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.13.0</version>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+            <!-- 配置maven-jar-plugin来压缩最终的jar包 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.4.2</version>
+                <configuration>
+                    <archive>
+                        <compress>true</compress>
+                    </archive>
+                </configuration>
+            </plugin>
+            <!-- 配置maven-dependency-plugin来排除不需要的依赖 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.8.0</version>
+                <configuration>
+                    <excludeGroupIds>
+                        <groupId>org.junit.vintage</groupId>
+                        <groupId>org.junit.jupiter</groupId>
+                    </excludeGroupIds>
+                    <excludeArtifactIds>
+                        <artifactId>junit-vintage-engine</artifactId>
+                    </excludeArtifactIds>
+                </configuration>
             </plugin>
         </plugins>
     </build>
