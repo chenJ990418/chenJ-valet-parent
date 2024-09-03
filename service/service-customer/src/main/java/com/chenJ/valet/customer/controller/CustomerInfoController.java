@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
 @RequestMapping("/customer/info")
-@SuppressWarnings({"unchecked", "rawtypes"})
 public class CustomerInfoController {
 
     @Resource
@@ -23,7 +22,8 @@ public class CustomerInfoController {
     @Operation(summary = "小程序授权登录")
     @GetMapping("/login/{code}")
     public Result<Long> login(@PathVariable String code) {
-        return Result.ok(customerInfoService.login(code));
+        Long login = customerInfoService.login(code);
+        return Result.ok(login);
     }
 
     @Operation(summary = "获取客户基本信息")

@@ -1,11 +1,13 @@
 package com.chenJ.valet.model.entity.customer;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.chenJ.valet.model.entity.base.BaseEntity;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 @Data
-@Schema(description = "CustomerInfo")
+@Schema(description = "CustomerInfoDo")
+@TableName(value = "customer_info")
 public class CustomerInfoDo extends BaseEntity {
 
     private static final long serialVersionUID = 1L;

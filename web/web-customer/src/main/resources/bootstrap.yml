@@ -1,6 +1,6 @@
 spring:
   application:
-    name: service-customer
+    name: web-customer
   profiles:
     active: dev
   main:

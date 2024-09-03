@@ -14,10 +14,10 @@ import com.chenJ.valet.model.entity.customer.CustomerLoginLogDo;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Slf4j
 @Service
-@SuppressWarnings({"unchecked", "rawtypes"})
 public class CustomerInfoServiceImpl extends ServiceImpl<CustomerInfoMapper, CustomerInfoDo> implements CustomerInfoService {
 
     @Resource
@@ -34,6 +34,7 @@ public class CustomerInfoServiceImpl extends ServiceImpl<CustomerInfoMapper, Cus
      * @return
      */
     @Override
+    @Transactional(rollbackFor = {Exception.class})
     public Long login(String code) {
         String openId = "";
         try {
