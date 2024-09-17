@@ -2,7 +2,7 @@ package com.chenJ.valet.system.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.chenJ.valet.common.result.Result;
-import com.chenJ.valet.model.entity.system.SysRole;
+import com.chenJ.valet.model.entity.system.SysRoleDo;
 import com.chenJ.valet.model.query.system.SysRoleQuery;
 import com.chenJ.valet.model.vo.base.PageVo;
 import com.chenJ.valet.model.vo.system.AssginRoleVo;
@@ -10,8 +10,8 @@ import com.chenJ.valet.system.service.SysRoleService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,19 +24,19 @@ import java.util.Map;
 @RequestMapping("/sysRole")
 public class SysRoleController {
 
-    @Autowired
+    @Resource
     private SysRoleService sysRoleService;
 
     @Operation(summary = "获取全部角色列表")
     @GetMapping("findAll")
-    public Result<List<SysRole>> findAll() {
-        List<SysRole> roleList = sysRoleService.list();
+    public Result<List<SysRoleDo>> findAll() {
+        List<SysRoleDo> roleList = sysRoleService.list();
         return Result.ok(roleList);
     }
 
     @Operation(summary = "获取分页列表")
     @PostMapping("findPage/{page}/{limit}")
-    public Result<PageVo<SysRole>> findPage(
+    public Result<PageVo<SysRoleDo>> findPage(
             @Parameter(name = "page", description = "当前页码", required = true)
             @PathVariable Long page,
 
@@ -45,27 +45,27 @@ public class SysRoleController {
 
             @Parameter(name = "roleQuery", description = "查询对象", required = false)
             @RequestBody SysRoleQuery roleQuery) {
-        Page<SysRole> pageParam = new Page<>(page, limit);
-        PageVo<SysRole> pageVo = sysRoleService.findPage(pageParam, roleQuery);
+        Page<SysRoleDo> pageParam = new Page<>(page, limit);
+        PageVo<SysRoleDo> pageVo = sysRoleService.findPage(pageParam, roleQuery);
         return Result.ok(pageVo);
     }
 
     @Operation(summary = "获取")
     @GetMapping("getById/{id}")
-    public Result<SysRole> getById(@PathVariable Long id) {
-        SysRole sysRole = sysRoleService.getById(id);
+    public Result<SysRoleDo> getById(@PathVariable Long id) {
+        SysRoleDo sysRole = sysRoleService.getById(id);
         return Result.ok(sysRole);
     }
 
     @Operation(summary = "新增角色")
     @PostMapping("save")
-    public Result<Boolean> save(@RequestBody @Validated SysRole role) {
+    public Result<Boolean> save(@RequestBody @Validated SysRoleDo role) {
         return Result.ok(sysRoleService.save(role));
     }
 
     @Operation(summary = "修改角色")
     @PutMapping("update")
-    public Result<Boolean> update(@RequestBody SysRole role) {
+    public Result<Boolean> update(@RequestBody SysRoleDo role) {
         return Result.ok(sysRoleService.updateById(role));
     }
 

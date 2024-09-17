@@ -1,12 +1,12 @@
 package com.chenJ.valet.system.controller;
 
 import com.chenJ.valet.common.result.Result;
-import com.chenJ.valet.model.entity.system.SysMenu;
+import com.chenJ.valet.model.entity.system.SysMenuDo;
 import com.chenJ.valet.model.vo.system.AssginMenuVo;
 import com.chenJ.valet.system.service.SysMenuService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,25 +16,25 @@ import java.util.List;
 @RequestMapping("/sysMenu")
 public class SysMenuController {
 
-    @Autowired
+    @Resource
     private SysMenuService sysMenuService;
 
     @Operation(summary = "获取菜单")
     @GetMapping("findNodes")
-    public Result<List<SysMenu>> findNodes() {
-        List<SysMenu> list = sysMenuService.findNodes();
+    public Result<List<SysMenuDo>> findNodes() {
+        List<SysMenuDo> list = sysMenuService.findNodes();
         return Result.ok(list);
     }
 
     @Operation(summary = "新增菜单")
     @PostMapping("save")
-    public Result<Boolean> save(@RequestBody SysMenu permission) {
+    public Result<Boolean> save(@RequestBody SysMenuDo permission) {
         return Result.ok(sysMenuService.save(permission));
     }
 
     @Operation(summary = "修改菜单")
     @PutMapping("update")
-    public Result<Boolean> update(@RequestBody SysMenu permission) {
+    public Result<Boolean> update(@RequestBody SysMenuDo permission) {
         return Result.ok(sysMenuService.updateById(permission));
     }
 
@@ -46,8 +46,8 @@ public class SysMenuController {
 
     @Operation(summary = "根据角色获取菜单")
     @GetMapping("toAssign/{roleId}")
-    public Result<List<SysMenu>> toAssign(@PathVariable Long roleId) {
-        List<SysMenu> list = sysMenuService.findSysMenuByRoleId(roleId);
+    public Result<List<SysMenuDo>> toAssign(@PathVariable Long roleId) {
+        List<SysMenuDo> list = sysMenuService.findSysMenuByRoleId(roleId);
         return Result.ok(list);
     }
 

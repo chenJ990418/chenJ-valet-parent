@@ -1,7 +1,7 @@
 package com.chenJ.valet.system.controller;
 
 import com.chenJ.valet.common.result.Result;
-import com.chenJ.valet.model.entity.system.SysDept;
+import com.chenJ.valet.model.entity.system.SysDeptDo;
 import com.chenJ.valet.system.service.SysDeptService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -22,19 +22,19 @@ public class SysDeptController {
     @Operation(summary = "获取")
     @GetMapping("getById/{id}")
     public Result getById(@PathVariable Long id) {
-        SysDept sysDept = sysDeptService.getById(id);
+        SysDeptDo sysDept = sysDeptService.getById(id);
         return Result.ok(sysDept);
     }
 
     @Operation(summary = "新增")
     @PostMapping("save")
-    public Result<Boolean> save(@RequestBody SysDept sysDept) {
+    public Result<Boolean> save(@RequestBody SysDeptDo sysDept) {
         return Result.ok(sysDeptService.save(sysDept));
     }
 
     @Operation(summary = "修改")
     @PutMapping("update")
-    public Result<Boolean> update(@RequestBody SysDept sysDept) {
+    public Result<Boolean> update(@RequestBody SysDeptDo sysDept) {
         return Result.ok(sysDeptService.updateById(sysDept));
     }
 
@@ -46,13 +46,13 @@ public class SysDeptController {
 
     @Operation(summary = "获取全部部门节点")
     @GetMapping("findNodes")
-    public Result<List<SysDept>> findNodes() {
+    public Result<List<SysDeptDo>> findNodes() {
         return Result.ok(sysDeptService.findNodes());
     }
 
     @Operation(summary = "获取用户部门节点")
     @GetMapping("findUserNodes")
-    public Result<List<SysDept>> findUserNodes() {
+    public Result<List<SysDeptDo>> findUserNodes() {
         return Result.ok(sysDeptService.findUserNodes());
     }
 

@@ -1,7 +1,7 @@
 package com.chenJ.valet.system.client;
 
 import com.chenJ.valet.common.result.Result;
-import com.chenJ.valet.model.entity.system.SysDept;
+import com.chenJ.valet.model.entity.system.SysDeptDo;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,13 +11,13 @@ import java.util.List;
 public interface SysDeptFeignClient {
 
     @GetMapping("/sysDept/getById/{id}")
-    Result<SysDept> getById(@PathVariable Long id);
+    Result<SysDeptDo> getById(@PathVariable Long id);
 
     @PostMapping("/sysDept/save")
-    Result<Boolean> save(@RequestBody SysDept sysDept);
+    Result<Boolean> save(@RequestBody SysDeptDo sysDept);
 
     @PutMapping("/sysDept/update")
-    Result<Boolean> update(@RequestBody SysDept sysDept);
+    Result<Boolean> update(@RequestBody SysDeptDo sysDept);
 
     @DeleteMapping("/sysDept/remove/{id}")
     Result<Boolean> remove(@PathVariable Long id);
@@ -28,7 +28,7 @@ public interface SysDeptFeignClient {
      * @return
      */
     @GetMapping("/sysDept/findNodes")
-    Result<List<SysDept>> findNodes();
+    Result<List<SysDeptDo>> findNodes();
 
     /**
      * 获取用户部门节点
@@ -36,7 +36,7 @@ public interface SysDeptFeignClient {
      * @return
      */
     @GetMapping("/sysDept/findUserNodes")
-    Result<List<SysDept>> findUserNodes();
+    Result<List<SysDeptDo>> findUserNodes();
 
     /**
      * 更新状态

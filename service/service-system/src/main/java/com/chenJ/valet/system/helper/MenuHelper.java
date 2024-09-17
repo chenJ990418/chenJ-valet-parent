@@ -1,7 +1,7 @@
 package com.chenJ.valet.system.helper;
 
 
-import com.chenJ.valet.model.entity.system.SysMenu;
+import com.chenJ.valet.model.entity.system.SysMenuDo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,9 +19,9 @@ public class MenuHelper {
      * @param sysMenuList
      * @return
      */
-    public static List<SysMenu> buildTree(List<SysMenu> sysMenuList) {
-        List<SysMenu> trees = new ArrayList<>();
-        for (SysMenu sysMenu : sysMenuList) {
+    public static List<SysMenuDo> buildTree(List<SysMenuDo> sysMenuList) {
+        List<SysMenuDo> trees = new ArrayList<>();
+        for (SysMenuDo sysMenu : sysMenuList) {
             if (sysMenu.getParentId().longValue() == 0) {
                 trees.add(findChildren(sysMenu, sysMenuList));
             }
@@ -35,10 +35,10 @@ public class MenuHelper {
      * @param treeNodes
      * @return
      */
-    public static SysMenu findChildren(SysMenu sysMenu, List<SysMenu> treeNodes) {
-        sysMenu.setChildren(new ArrayList<SysMenu>());
+    public static SysMenuDo findChildren(SysMenuDo sysMenu, List<SysMenuDo> treeNodes) {
+        sysMenu.setChildren(new ArrayList<SysMenuDo>());
 
-        for (SysMenu it : treeNodes) {
+        for (SysMenuDo it : treeNodes) {
             if (sysMenu.getId().longValue() == it.getParentId().longValue()) {
                 if (sysMenu.getChildren() == null) {
                     sysMenu.setChildren(new ArrayList<>());

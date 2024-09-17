@@ -4,7 +4,7 @@ import com.chenJ.valet.common.annotation.Log;
 import com.chenJ.valet.common.enums.BusinessType;
 import com.chenJ.valet.common.result.Result;
 import com.chenJ.valet.mgr.service.SysPostService;
-import com.chenJ.valet.model.entity.system.SysPost;
+import com.chenJ.valet.model.entity.system.SysPostDo;
 import com.chenJ.valet.model.query.system.SysPostQuery;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -41,7 +41,7 @@ public class SysPostController {
     @PreAuthorize("hasAuthority('bnt.sysPost.list')")
     @GetMapping("getById/{id}")
     public Result getById(@PathVariable Long id) {
-        SysPost sysPost = sysPostService.getById(id);
+        SysPostDo sysPost = sysPostService.getById(id);
         return Result.ok(sysPost);
     }
 
@@ -54,7 +54,7 @@ public class SysPostController {
     @Operation(summary = "新增")
     @PreAuthorize("hasAuthority('bnt.sysPost.add')")
     @PostMapping("save")
-    public Result save(@RequestBody SysPost sysPost) {
+    public Result save(@RequestBody SysPostDo sysPost) {
         sysPostService.save(sysPost);
         return Result.ok();
     }
@@ -63,7 +63,7 @@ public class SysPostController {
     @Operation(summary = "修改")
     @PreAuthorize("hasAuthority('bnt.sysPost.update')")
     @PutMapping("update")
-    public Result update(@RequestBody SysPost sysPost) {
+    public Result update(@RequestBody SysPostDo sysPost) {
         sysPostService.update(sysPost);
         return Result.ok();
     }

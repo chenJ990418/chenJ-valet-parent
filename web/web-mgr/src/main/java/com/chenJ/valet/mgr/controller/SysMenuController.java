@@ -4,11 +4,11 @@ import com.chenJ.valet.common.annotation.Log;
 import com.chenJ.valet.common.enums.BusinessType;
 import com.chenJ.valet.common.result.Result;
 import com.chenJ.valet.mgr.service.SysMenuService;
-import com.chenJ.valet.model.entity.system.SysMenu;
+import com.chenJ.valet.model.entity.system.SysMenuDo;
 import com.chenJ.valet.model.vo.system.AssginMenuVo;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.annotation.Resource;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,14 +19,14 @@ import java.util.List;
 @RequestMapping("/sysMenu")
 public class SysMenuController {
 
-    @Autowired
+    @Resource
     private SysMenuService sysMenuService;
 
     @PreAuthorize("hasAuthority('bnt.sysMenu.list')")
     @Operation(summary = "获取菜单")
     @GetMapping("findNodes")
     public Result findNodes() {
-        List<SysMenu> list = sysMenuService.findNodes();
+        List<SysMenuDo> list = sysMenuService.findNodes();
         return Result.ok(list);
     }
 
@@ -34,7 +34,7 @@ public class SysMenuController {
     @PreAuthorize("hasAuthority('bnt.sysMenu.add')")
     @Operation(summary = "新增菜单")
     @PostMapping("save")
-    public Result save(@RequestBody SysMenu permission) {
+    public Result save(@RequestBody SysMenuDo permission) {
         sysMenuService.save(permission);
         return Result.ok();
     }
@@ -43,7 +43,7 @@ public class SysMenuController {
     @PreAuthorize("hasAuthority('bnt.sysMenu.update')")
     @Operation(summary = "修改菜单")
     @PutMapping("update")
-    public Result update(@RequestBody SysMenu permission) {
+    public Result update(@RequestBody SysMenuDo permission) {
         sysMenuService.update(permission);
         return Result.ok();
     }
@@ -61,7 +61,7 @@ public class SysMenuController {
     @Operation(summary = "根据角色获取菜单")
     @GetMapping("toAssign/{roleId}")
     public Result toAssign(@PathVariable Long roleId) {
-        List<SysMenu> list = sysMenuService.toAssign(roleId);
+        List<SysMenuDo> list = sysMenuService.toAssign(roleId);
         return Result.ok(list);
     }
 

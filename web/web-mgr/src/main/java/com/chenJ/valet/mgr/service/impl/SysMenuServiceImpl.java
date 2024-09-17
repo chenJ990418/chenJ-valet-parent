@@ -1,10 +1,10 @@
 package com.chenJ.valet.mgr.service.impl;
 
 import com.chenJ.valet.mgr.service.SysMenuService;
-import com.chenJ.valet.model.entity.system.SysMenu;
+import com.chenJ.valet.model.entity.system.SysMenuDo;
 import com.chenJ.valet.model.vo.system.AssginMenuVo;
 import com.chenJ.valet.system.client.SysMenuFeignClient;
-import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,16 +12,16 @@ import java.util.List;
 @Service
 public class SysMenuServiceImpl implements SysMenuService {
 
-    @Autowired
+    @Resource
     private SysMenuFeignClient sysMenuFeignClient;
 
     @Override
-    public void save(SysMenu sysMenu) {
+    public void save(SysMenuDo sysMenu) {
         sysMenuFeignClient.save(sysMenu);
     }
 
     @Override
-    public void update(SysMenu sysMenu) {
+    public void update(SysMenuDo sysMenu) {
         sysMenuFeignClient.update(sysMenu);
     }
 
@@ -31,7 +31,7 @@ public class SysMenuServiceImpl implements SysMenuService {
     }
 
     @Override
-    public List<SysMenu> findNodes() {
+    public List<SysMenuDo> findNodes() {
         return sysMenuFeignClient.findNodes().getData();
     }
 
@@ -41,7 +41,7 @@ public class SysMenuServiceImpl implements SysMenuService {
     }
 
     @Override
-    public List<SysMenu> toAssign(Long roleId) {
+    public List<SysMenuDo> toAssign(Long roleId) {
         return sysMenuFeignClient.toAssign(roleId).getData();
     }
 }

@@ -1,6 +1,6 @@
 package com.chenJ.valet.mgr.service;
 
-import com.chenJ.valet.model.entity.system.SysRole;
+import com.chenJ.valet.model.entity.system.SysRoleDo;
 import com.chenJ.valet.model.query.system.SysRoleQuery;
 import com.chenJ.valet.model.vo.base.PageVo;
 import com.chenJ.valet.model.vo.system.AssginRoleVo;
@@ -10,15 +10,15 @@ import java.util.Map;
 
 public interface SysRoleService {
 
-    SysRole getById(Long id);
+    SysRoleDo getById(Long id);
 
-    void save(SysRole sysRole);
+    void save(SysRoleDo sysRole);
 
-    void update(SysRole sysRole);
+    void update(SysRoleDo sysRole);
 
     void remove(Long id);
 
-    PageVo<SysRole> findPage(Long page, Long limit, SysRoleQuery roleQuery);
+    PageVo<SysRoleDo> findPage(Long page, Long limit, SysRoleQuery roleQuery);
 
 
     void batchRemove(List<Long> idList);
@@ -27,5 +27,5 @@ public interface SysRoleService {
 
     void doAssign(AssginRoleVo assginRoleVo);
 
-    List<SysRole> findAll();
+    List<SysRoleDo> findAll();
 }

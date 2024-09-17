@@ -2,7 +2,7 @@ package com.chenJ.valet.system.client;
 
 
 import com.chenJ.valet.common.result.Result;
-import com.chenJ.valet.model.entity.system.SysUser;
+import com.chenJ.valet.model.entity.system.SysUserDo;
 import com.chenJ.valet.model.query.system.SysUserQuery;
 import com.chenJ.valet.model.vo.base.PageVo;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -21,7 +21,7 @@ public interface SysUserFeignClient {
      * @return
      */
     @PostMapping("/sysUser/findPage/{page}/{limit}")
-    Result<PageVo<SysUser>> findPage(
+    Result<PageVo<SysUserDo>> findPage(
             @PathVariable("page") Long page,
             @PathVariable("limit") Long limit,
             @RequestBody SysUserQuery sysUserQuery);
@@ -33,7 +33,7 @@ public interface SysUserFeignClient {
      * @return
      */
     @GetMapping("/sysUser/getById/{id}")
-    Result<SysUser> getById(@PathVariable("id") Long id);
+    Result<SysUserDo> getById(@PathVariable("id") Long id);
 
     /**
      * 保存用户
@@ -42,7 +42,7 @@ public interface SysUserFeignClient {
      * @return
      */
     @PostMapping("/sysUser/save")
-    Result<Boolean> save(@RequestBody SysUser user);
+    Result<Boolean> save(@RequestBody SysUserDo user);
 
     /**
      * 更新用户
@@ -51,7 +51,7 @@ public interface SysUserFeignClient {
      * @return
      */
     @PutMapping("/sysUser/update")
-    Result<Boolean> update(@RequestBody SysUser user);
+    Result<Boolean> update(@RequestBody SysUserDo user);
 
     /**
      * 删除用户

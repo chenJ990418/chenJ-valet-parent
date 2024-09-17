@@ -1,10 +1,9 @@
-package com.chenJ.valet.system.service.impl;//package com.atguigu.daijia.system.service.impl;
-//
-//import com.atguigu.daijia.model.system.SysUser;
-//import com.atguigu.daijia.security.custom.CustomUser;
-//import com.atguigu.daijia.system.service.SysMenuService;
-//import com.atguigu.daijia.system.service.SysUserService;
-//import org.springframework.beans.factory.annotation.Autowired;
+package com.chenJ.valet.system.service.impl;
+
+
+//import com.chenJ.valet.model.entity.system.SysUser;
+//import com.chenJ.valet.system.service.SysMenuService;
+//import com.chenJ.valet.system.service.SysUserService;
 //import org.springframework.security.core.userdetails.UserDetails;
 //import org.springframework.security.core.userdetails.UserDetailsService;
 //import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -16,10 +15,10 @@ package com.chenJ.valet.system.service.impl;//package com.atguigu.daijia.system.
 //@Component
 //public class UserDetailsServiceImpl implements UserDetailsService {
 //
-//    @Autowired
+//    @Resource
 //    private SysUserService sysUserService;
 //
-//    @Autowired
+//    @Resource
 //    private SysMenuService sysMenuService;
 //
 //    @Override

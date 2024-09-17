@@ -43,14 +43,12 @@ public enum ResultCodeEnum {
 
     COUPON_EXPIRE(250, "优惠券已过期"),
     COUPON_LESS(250, "优惠券库存不足"),
-    COUPON_USER_LIMIT(250, "超出领取数量"),
-    ;
+    COUPON_USER_LIMIT(250, "超出领取数量");
 
     private Integer code;
-
     private String message;
 
-    private ResultCodeEnum(Integer code, String message) {
+    ResultCodeEnum(Integer code, String message) {
         this.code = code;
         this.message = message;
     }

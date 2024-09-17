@@ -1,10 +1,11 @@
 package com.chenJ.valet.mgr.controller;
 
 import com.chenJ.valet.mgr.service.CustomerInfoService;
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 
 @Slf4j
 @RestController
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @SuppressWarnings({"unchecked", "rawtypes"})
 public class CustomerInfoController {
 
-    @Autowired
+    @Resource
     private CustomerInfoService customerInfoService;
 
 

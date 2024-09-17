@@ -5,13 +5,13 @@ import com.chenJ.valet.common.enums.BusinessType;
 import com.chenJ.valet.common.result.Result;
 import com.chenJ.valet.common.util.MD5;
 import com.chenJ.valet.mgr.service.SysUserService;
-import com.chenJ.valet.model.entity.system.SysUser;
+import com.chenJ.valet.model.entity.system.SysUserDo;
 import com.chenJ.valet.model.query.system.SysUserQuery;
 import com.chenJ.valet.model.vo.base.PageVo;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.annotation.Resource;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,13 +22,13 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin
 public class SysUserController {
 
-    @Autowired
+    @Resource
     private SysUserService sysUserService;
 
     @Operation(summary = "获取分页列表")
     @PreAuthorize("hasAuthority('bnt.sysUser.list')")
     @PostMapping("{page}/{limit}")
-    public Result<PageVo<SysUser>> findPage(
+    public Result<PageVo<SysUserDo>> findPage(
             @Parameter(name = "page", description = "当前页码", required = true)
             @PathVariable Long page,
 
@@ -44,7 +44,7 @@ public class SysUserController {
     @PreAuthorize("hasAuthority('bnt.sysUser.list')")
     @GetMapping("getById/{id}")
     public Result getById(@PathVariable Long id) {
-        SysUser sysUser = sysUserService.getById(id);
+        SysUserDo sysUser = sysUserService.getById(id);
         return Result.ok(sysUser);
     }
 
@@ -52,7 +52,7 @@ public class SysUserController {
     @Operation(summary = "保存用户")
     @PreAuthorize("hasAuthority('bnt.sysUser.add')")
     @PostMapping("save")
-    public Result save(@RequestBody SysUser sysUser) {
+    public Result save(@RequestBody SysUserDo sysUser) {
         sysUser.setPassword(MD5.encrypt(sysUser.getPassword()));
         sysUserService.save(sysUser);
         return Result.ok();
@@ -62,7 +62,7 @@ public class SysUserController {
     @Operation(summary = "更新用户")
     @PreAuthorize("hasAuthority('bnt.sysUser.update')")
     @PutMapping("update")
-    public Result update(@RequestBody SysUser sysUser) {
+    public Result update(@RequestBody SysUserDo sysUser) {
         sysUserService.update(sysUser);
         return Result.ok();
     }

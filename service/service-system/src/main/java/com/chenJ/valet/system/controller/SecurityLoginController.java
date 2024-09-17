@@ -2,7 +2,7 @@ package com.chenJ.valet.system.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.chenJ.valet.common.result.Result;
-import com.chenJ.valet.model.entity.system.SysUser;
+import com.chenJ.valet.model.entity.system.SysUserDo;
 import com.chenJ.valet.model.vo.system.LoginVo;
 import com.chenJ.valet.system.service.SysMenuService;
 import com.chenJ.valet.system.service.SysUserService;
@@ -37,7 +37,7 @@ public class SecurityLoginController {
 
     @Operation(summary = "根据用户名获取用户信息")
     @GetMapping("getByUsername/{username}")
-    public Result<SysUser> getByUsername(@PathVariable String username) {
+    public Result<SysUserDo> getByUsername(@PathVariable String username) {
         return Result.ok(sysUserService.getByUsername(username));
     }
 

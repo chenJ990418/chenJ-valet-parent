@@ -4,14 +4,14 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.chenJ.valet.model.entity.system.SysUser;
+import com.chenJ.valet.model.entity.system.SysUserDo;
 import com.chenJ.valet.model.query.system.SysUserQuery;
 import com.chenJ.valet.model.vo.base.PageVo;
 import com.chenJ.valet.model.vo.system.RouterVo;
 import com.chenJ.valet.system.mapper.SysUserMapper;
 import com.chenJ.valet.system.service.SysMenuService;
 import com.chenJ.valet.system.service.SysUserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,24 +21,24 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> implements SysUserService {
+public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUserDo> implements SysUserService {
 
-    @Autowired
+    @Resource
     private SysUserMapper sysUserMapper;
 
-    @Autowired
+    @Resource
     private SysMenuService sysMenuService;
 
     @Override
-    public PageVo<SysUser> findPage(Page<SysUser> pageParam, SysUserQuery sysUserQuery) {
-        IPage<SysUser> pageInfo = sysUserMapper.selectPage(pageParam, sysUserQuery);
+    public PageVo<SysUserDo> findPage(Page<SysUserDo> pageParam, SysUserQuery sysUserQuery) {
+        IPage<SysUserDo> pageInfo = sysUserMapper.selectPage(pageParam, sysUserQuery);
         return new PageVo(pageInfo.getRecords(), pageInfo.getPages(), pageInfo.getTotal());
     }
 
     @Transactional
     @Override
     public void updateStatus(Long id, Integer status) {
-        SysUser sysUser = this.getById(id);
+        SysUserDo sysUser = this.getById(id);
         if (status.intValue() == 1) {
             sysUser.setStatus(status);
         } else {
@@ -48,14 +48,14 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     }
 
     @Override
-    public SysUser getByUsername(String username) {
-        return this.getOne(new LambdaQueryWrapper<SysUser>().eq(SysUser::getUsername, username));
+    public SysUserDo getByUsername(String username) {
+        return this.getOne(new LambdaQueryWrapper<SysUserDo>().eq(SysUserDo::getUsername, username));
     }
 
     @Override
     public Map<String, Object> getUserInfo(Long userId) {
         Map<String, Object> result = new HashMap<>();
-        SysUser sysUser = this.getById(userId);
+        SysUserDo sysUser = this.getById(userId);
 
         //根据用户id获取菜单权限值
         List<RouterVo> routerVoList = sysMenuService.findUserMenuList(sysUser.getId());

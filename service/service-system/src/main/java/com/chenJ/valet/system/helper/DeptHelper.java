@@ -1,7 +1,7 @@
 package com.chenJ.valet.system.helper;
 
 
-import com.chenJ.valet.model.entity.system.SysDept;
+import com.chenJ.valet.model.entity.system.SysDeptDo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,9 +15,9 @@ import java.util.Objects;
 public class DeptHelper {
 
     //把一个List转成树
-    public static List<SysDept> buildTree(List<SysDept> list, Long parentId) {
-        List<SysDept> tree = new ArrayList<>();
-        for (SysDept org : list) {
+    public static List<SysDeptDo> buildTree(List<SysDeptDo> list, Long parentId) {
+        List<SysDeptDo> tree = new ArrayList<>();
+        for (SysDeptDo org : list) {
             if (Objects.equals(org.getParentId(), parentId)) {
                 tree.add(findChild(org, list));
             }
@@ -25,11 +25,11 @@ public class DeptHelper {
         return tree;
     }
 
-    private static SysDept findChild(SysDept org, List<SysDept> list) {
-        for (SysDept n : list) {
+    private static SysDeptDo findChild(SysDeptDo org, List<SysDeptDo> list) {
+        for (SysDeptDo n : list) {
             if (Objects.equals(n.getParentId(), org.getId())) {
                 if (org.getChildren() == null) {
-                    org.setChildren(new ArrayList<SysDept>());
+                    org.setChildren(new ArrayList<SysDeptDo>());
                 }
                 org.getChildren().add(findChild(n, list));
             }

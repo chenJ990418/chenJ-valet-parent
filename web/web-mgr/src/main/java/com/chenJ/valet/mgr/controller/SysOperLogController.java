@@ -3,7 +3,7 @@ package com.chenJ.valet.mgr.controller;
 import com.chenJ.valet.common.result.Result;
 import com.chenJ.valet.common.util.AuthContextHolder;
 import com.chenJ.valet.mgr.service.SysOperLogService;
-import com.chenJ.valet.model.entity.system.SysOperLog;
+import com.chenJ.valet.model.entity.system.SysOperLogDo;
 import com.chenJ.valet.model.query.system.SysOperLogQuery;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -41,13 +41,13 @@ public class SysOperLogController {
     @Operation(summary = "获取")
     @GetMapping("getById/{id}")
     public Result getById(@PathVariable Long id) {
-        SysOperLog sysOperLog = sysOperLogService.getById(id);
+        SysOperLogDo sysOperLog = sysOperLogService.getById(id);
         return Result.ok(sysOperLog);
     }
 
     @Operation(summary = "记录日志")
     @PostMapping("saveSysLog")
-    public Result saveSysLog(@RequestBody SysOperLog sysOperLog) {
+    public Result saveSysLog(@RequestBody SysOperLogDo sysOperLog) {
         sysOperLog.setOperName(AuthContextHolder.getUserId() + "");
         sysOperLogService.saveSysLog(sysOperLog);
         return Result.ok();

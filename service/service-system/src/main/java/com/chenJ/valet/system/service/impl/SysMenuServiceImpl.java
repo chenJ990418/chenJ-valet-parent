@@ -2,10 +2,10 @@ package com.chenJ.valet.system.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.chenJ.valet.common.execption.GuiguException;
+import com.chenJ.valet.common.execption.ValetException;
 import com.chenJ.valet.common.result.ResultCodeEnum;
-import com.chenJ.valet.model.entity.system.SysMenu;
-import com.chenJ.valet.model.entity.system.SysRoleMenu;
+import com.chenJ.valet.model.entity.system.SysMenuDo;
+import com.chenJ.valet.model.entity.system.SysRoleMenuDo;
 import com.chenJ.valet.model.vo.system.AssginMenuVo;
 import com.chenJ.valet.model.vo.system.MetaVo;
 import com.chenJ.valet.model.vo.system.RouterVo;
@@ -13,7 +13,7 @@ import com.chenJ.valet.system.helper.MenuHelper;
 import com.chenJ.valet.system.mapper.SysMenuMapper;
 import com.chenJ.valet.system.mapper.SysRoleMenuMapper;
 import com.chenJ.valet.system.service.SysMenuService;
-import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
@@ -25,42 +25,42 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> implements SysMenuService {
+public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenuDo> implements SysMenuService {
 
-    @Autowired
+    @Resource
     private SysMenuMapper sysMenuMapper;
 
-    @Autowired
+    @Resource
     private SysRoleMenuMapper sysRoleMenuMapper;
 
     @Override
-    public List<SysMenu> findNodes() {
+    public List<SysMenuDo> findNodes() {
         //全部权限列表
-        List<SysMenu> sysMenuList = this.list();
+        List<SysMenuDo> sysMenuList = this.list();
         if (CollectionUtils.isEmpty(sysMenuList)) return null;
 
         //构建树形数据
-        List<SysMenu> result = MenuHelper.buildTree(sysMenuList);
+        List<SysMenuDo> result = MenuHelper.buildTree(sysMenuList);
         return result;
     }
 
     @Override
     public boolean removeById(Serializable id) {
-        long count = this.count(new LambdaQueryWrapper<SysMenu>().eq(SysMenu::getParentId, id));
+        long count = this.count(new LambdaQueryWrapper<SysMenuDo>().eq(SysMenuDo::getParentId, id));
         if (count > 0) {
-            throw new GuiguException(ResultCodeEnum.NODE_ERROR);
+            throw new ValetException(ResultCodeEnum.NODE_ERROR);
         }
         sysMenuMapper.deleteById(id);
         return false;
     }
 
     @Override
-    public List<SysMenu> findSysMenuByRoleId(Long roleId) {
+    public List<SysMenuDo> findSysMenuByRoleId(Long roleId) {
         //全部权限列表
-        List<SysMenu> allSysMenuList = this.list(new LambdaQueryWrapper<SysMenu>().eq(SysMenu::getStatus, 1));
+        List<SysMenuDo> allSysMenuList = this.list(new LambdaQueryWrapper<SysMenuDo>().eq(SysMenuDo::getStatus, 1));
 
         //根据角色id获取角色权限
-        List<SysRoleMenu> sysRoleMenuList = sysRoleMenuMapper.selectList(new LambdaQueryWrapper<SysRoleMenu>().eq(SysRoleMenu::getRoleId, roleId));
+        List<SysRoleMenuDo> sysRoleMenuList = sysRoleMenuMapper.selectList(new LambdaQueryWrapper<SysRoleMenuDo>().eq(SysRoleMenuDo::getRoleId, roleId));
         //转换给角色id与角色权限对应Map对象
         List<Long> menuIdList = sysRoleMenuList.stream().map(e -> e.getMenuId()).collect(Collectors.toList());
 
@@ -72,18 +72,18 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
             }
         });
 
-        List<SysMenu> sysMenuList = MenuHelper.buildTree(allSysMenuList);
+        List<SysMenuDo> sysMenuList = MenuHelper.buildTree(allSysMenuList);
         return sysMenuList;
     }
 
     @Transactional
     @Override
     public void doAssign(AssginMenuVo assginMenuVo) {
-        sysRoleMenuMapper.delete(new LambdaQueryWrapper<SysRoleMenu>().eq(SysRoleMenu::getRoleId, assginMenuVo.getRoleId()));
+        sysRoleMenuMapper.delete(new LambdaQueryWrapper<SysRoleMenuDo>().eq(SysRoleMenuDo::getRoleId, assginMenuVo.getRoleId()));
 
         for (Long menuId : assginMenuVo.getMenuIdList()) {
             if (null == menuId) continue;
-            SysRoleMenu rolePermission = new SysRoleMenu();
+            SysRoleMenuDo rolePermission = new SysRoleMenuDo();
             rolePermission.setRoleId(assginMenuVo.getRoleId());
             rolePermission.setMenuId(menuId);
             sysRoleMenuMapper.insert(rolePermission);
@@ -93,14 +93,14 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
     @Override
     public List<RouterVo> findUserMenuList(Long userId) {
         //超级管理员admin账号id为：1
-        List<SysMenu> sysMenuList = null;
+        List<SysMenuDo> sysMenuList = null;
         if (userId.longValue() == 1) {
-            sysMenuList = this.list(new LambdaQueryWrapper<SysMenu>().eq(SysMenu::getStatus, 1).orderByAsc(SysMenu::getSortValue));
+            sysMenuList = this.list(new LambdaQueryWrapper<SysMenuDo>().eq(SysMenuDo::getStatus, 1).orderByAsc(SysMenuDo::getSortValue));
         } else {
             sysMenuList = sysMenuMapper.findListByUserId(userId);
         }
         //构建树形数据
-        List<SysMenu> sysMenuTreeList = MenuHelper.buildTree(sysMenuList);
+        List<SysMenuDo> sysMenuTreeList = MenuHelper.buildTree(sysMenuList);
 
         List<RouterVo> routerVoList = this.buildMenus(sysMenuTreeList);
         return routerVoList;
@@ -112,9 +112,9 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
      * @param menus
      * @return
      */
-    private List<RouterVo> buildMenus(List<SysMenu> menus) {
+    private List<RouterVo> buildMenus(List<SysMenuDo> menus) {
         List<RouterVo> routers = new LinkedList<RouterVo>();
-        for (SysMenu menu : menus) {
+        for (SysMenuDo menu : menus) {
             RouterVo router = new RouterVo();
             //router.setHidden(false);
             router.setAlwaysShow(false);
@@ -122,11 +122,11 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
             router.setComponent(menu.getComponent());
             Boolean isHide = menu.getIsHide().intValue() == 1 ? true : false;
             router.setMeta(new MetaVo(menu.getName(), menu.getIcon(), menu.getActiveMenu(), isHide));
-            List<SysMenu> children = menu.getChildren();
+            List<SysMenuDo> children = menu.getChildren();
             //如果当前是菜单，需将按钮对应的路由加载出来，如：“角色授权”按钮对应的路由在“系统管理”下面
             if (menu.getType().intValue() == 1) {
-                List<SysMenu> hiddenMenuList = children.stream().filter(item -> StringUtils.hasText(item.getComponent())).collect(Collectors.toList());
-                for (SysMenu hiddenMenu : hiddenMenuList) {
+                List<SysMenuDo> hiddenMenuList = children.stream().filter(item -> StringUtils.hasText(item.getComponent())).collect(Collectors.toList());
+                for (SysMenuDo hiddenMenu : hiddenMenuList) {
                     RouterVo hiddenRouter = new RouterVo();
                     //hiddenRouter.setHidden(true);
                     hiddenRouter.setAlwaysShow(false);
@@ -155,7 +155,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
      * @param menu 菜单信息
      * @return 路由地址
      */
-    public String getRouterPath(SysMenu menu) {
+    public String getRouterPath(SysMenuDo menu) {
         String routerPath = "/" + menu.getPath();
         if (menu.getParentId().intValue() != 0) {
             routerPath = menu.getPath();
@@ -166,9 +166,9 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
     @Override
     public List<String> findUserPermsList(Long userId) {
         //超级管理员admin账号id为：1
-        List<SysMenu> sysMenuList = null;
+        List<SysMenuDo> sysMenuList = null;
         if (userId.longValue() == 1) {
-            sysMenuList = this.list(new LambdaQueryWrapper<SysMenu>().eq(SysMenu::getStatus, 1));
+            sysMenuList = this.list(new LambdaQueryWrapper<SysMenuDo>().eq(SysMenuDo::getStatus, 1));
         } else {
             sysMenuList = sysMenuMapper.findListByUserId(userId);
         }
