@@ -6,7 +6,7 @@ import com.chenJ.valet.common.result.Result;
 import com.chenJ.valet.common.result.ResultCodeEnum;
 import com.chenJ.valet.common.util.AuthContextHolder;
 import com.chenJ.valet.common.util.ResponseUtil;
-import com.chenJ.valet.model.entity.system.SysUser;
+import com.chenJ.valet.model.entity.system.SysUserDo;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -70,7 +70,7 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
         String token = request.getHeader("token");
         logger.info("token:" + token);
         if (StringUtils.hasText(token)) {
-            SysUser sysUser = (SysUser) redisTemplate.opsForValue().get(ADMIN_LOGIN_KEY_PREFIX + token);
+            SysUserDo sysUser = (SysUserDo) redisTemplate.opsForValue().get(ADMIN_LOGIN_KEY_PREFIX + token);
             logger.info("sysUser:" + JSON.toJSONString(sysUser));
             if (null != sysUser) {
                 AuthContextHolder.setUserId(sysUser.getId());

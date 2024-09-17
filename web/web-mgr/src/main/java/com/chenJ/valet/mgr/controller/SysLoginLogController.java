@@ -2,7 +2,7 @@ package com.chenJ.valet.mgr.controller;
 
 import com.chenJ.valet.common.result.Result;
 import com.chenJ.valet.mgr.service.SysLoginLogService;
-import com.chenJ.valet.model.entity.system.SysLoginLog;
+import com.chenJ.valet.model.entity.system.SysLoginLogDo;
 import com.chenJ.valet.model.query.system.SysLoginLogQuery;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -39,13 +39,13 @@ public class SysLoginLogController {
     @Operation(summary = "获取")
     @GetMapping("getById/{id}")
     public Result getById(@PathVariable Long id) {
-        SysLoginLog sysLoginLog = sysLoginLogService.getById(id);
+        SysLoginLogDo sysLoginLog = sysLoginLogService.getById(id);
         return Result.ok(sysLoginLog);
     }
 
     @Operation(summary = "记录登录日志")
     @PostMapping("recordLoginLog")
-    public Result recordLoginLog(@RequestBody SysLoginLog sysLoginLog) {
+    public Result recordLoginLog(@RequestBody SysLoginLogDo sysLoginLog) {
         sysLoginLogService.recordLoginLog(sysLoginLog);
         return Result.ok();
     }

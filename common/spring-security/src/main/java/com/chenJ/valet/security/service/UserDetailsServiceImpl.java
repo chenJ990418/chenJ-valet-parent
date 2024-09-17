@@ -1,6 +1,6 @@
 package com.chenJ.valet.security.service;
 
-import com.chenJ.valet.model.entity.system.SysUser;
+import com.chenJ.valet.model.entity.system.SysUserDo;
 import com.chenJ.valet.security.custom.CustomUser;
 import com.chenJ.valet.system.client.SecurityLoginFeignClient;
 import jakarta.annotation.Resource;
@@ -22,7 +22,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        SysUser sysUser = securityLoginFeignClient.getByUsername(username).getData();
+        SysUserDo sysUser = securityLoginFeignClient.getByUsername(username).getData();
         if (null == sysUser) {
             throw new UsernameNotFoundException("用户名不存在！");
         }

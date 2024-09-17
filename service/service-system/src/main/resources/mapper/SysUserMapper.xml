@@ -6,7 +6,7 @@
 
 <mapper namespace="com.chenJ.valet.system.mapper.SysUserMapper">
 
-    <resultMap id="SysUserMap" type="com.chenJ.valet.model.entity.system.SysUser">
+    <resultMap id="SysUserMap" type="com.chenJ.valet.model.entity.system.SysUserDo">
         <result property="id" column="id"/>
         <result property="username" column="username"/>
         <result property="password" column="password"/>
@@ -22,7 +22,7 @@
         <result property="isDeleted" column="is_deleted"/>
         <result property="postName" column="post_name"/>
         <result property="deptName" column="dept_name"/>
-        <collection property="roleList" ofType="com.chenJ.valet.model.entity.system.SysRole">
+        <collection property="roleList" ofType="com.chenJ.valet.model.entity.system.SysRoleDo">
             <result property="id" column="role_id"/>
             <result property="roleName" column="role_name"/>
             <result property="roleCode" column="role_code"/>

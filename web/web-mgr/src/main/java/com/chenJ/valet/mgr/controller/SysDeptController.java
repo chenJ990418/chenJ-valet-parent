@@ -4,7 +4,7 @@ import com.chenJ.valet.common.annotation.Log;
 import com.chenJ.valet.common.enums.BusinessType;
 import com.chenJ.valet.common.result.Result;
 import com.chenJ.valet.mgr.service.SysDeptService;
-import com.chenJ.valet.model.entity.system.SysDept;
+import com.chenJ.valet.model.entity.system.SysDeptDo;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
@@ -24,7 +24,7 @@ public class SysDeptController {
     @PreAuthorize("hasAuthority('bnt.sysDept.list')")
     @GetMapping("getById/{id}")
     public Result getById(@PathVariable Long id) {
-        SysDept sysDept = sysDeptService.getById(id);
+        SysDeptDo sysDept = sysDeptService.getById(id);
         return Result.ok(sysDept);
     }
 
@@ -32,7 +32,7 @@ public class SysDeptController {
     @Operation(summary = "新增")
     @PreAuthorize("hasAuthority('bnt.sysDept.add')")
     @PostMapping("save")
-    public Result save(@RequestBody SysDept sysDept) {
+    public Result save(@RequestBody SysDeptDo sysDept) {
         sysDeptService.save(sysDept);
         return Result.ok();
     }
@@ -41,7 +41,7 @@ public class SysDeptController {
     @Operation(summary = "修改")
     @PreAuthorize("hasAuthority('bnt.sysDept.update')")
     @PutMapping("update")
-    public Result update(@RequestBody SysDept sysDept) {
+    public Result update(@RequestBody SysDeptDo sysDept) {
         sysDeptService.update(sysDept);
         return Result.ok();
     }

@@ -4,8 +4,8 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.chenJ.valet.model.entity.system.SysRole;
-import com.chenJ.valet.model.entity.system.SysUserRole;
+import com.chenJ.valet.model.entity.system.SysRoleDo;
+import com.chenJ.valet.model.entity.system.SysUserRoleDo;
 import com.chenJ.valet.model.query.system.SysRoleQuery;
 import com.chenJ.valet.model.vo.base.PageVo;
 import com.chenJ.valet.model.vo.system.AssginRoleVo;
@@ -23,7 +23,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
-public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> implements SysRoleService {
+public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRoleDo> implements SysRoleService {
 
     @Resource
     private SysRoleMapper sysRoleMapper;
@@ -32,23 +32,23 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
     private SysUserRoleMapper sysUserRoleMapper;
 
     @Override
-    public PageVo<SysRole> findPage(Page<SysRole> pageParam, SysRoleQuery roleQuery) {
-        IPage<SysRole> pageInfo = sysRoleMapper.selectPage(pageParam, roleQuery);
+    public PageVo<SysRoleDo> findPage(Page<SysRoleDo> pageParam, SysRoleQuery roleQuery) {
+        IPage<SysRoleDo> pageInfo = sysRoleMapper.selectPage(pageParam, roleQuery);
         return new PageVo(pageInfo.getRecords(), pageInfo.getPages(), pageInfo.getTotal());
     }
 
     @Override
     public Map<String, Object> findRoleByUserId(Long userId) {
         //查询所有的角色
-        List<SysRole> allRolesList = this.list();
+        List<SysRoleDo> allRolesList = this.list();
 
         //拥有的角色id
-        List<SysUserRole> existUserRoleList = sysUserRoleMapper.selectList(new LambdaQueryWrapper<SysUserRole>().eq(SysUserRole::getUserId, userId).select(SysUserRole::getRoleId));
+        List<SysUserRoleDo> existUserRoleList = sysUserRoleMapper.selectList(new LambdaQueryWrapper<SysUserRoleDo>().eq(SysUserRoleDo::getUserId, userId).select(SysUserRoleDo::getRoleId));
         List<Long> existRoleIdList = existUserRoleList.stream().map(c -> c.getRoleId()).collect(Collectors.toList());
 
         //对角色进行分类
-        List<SysRole> assginRoleList = new ArrayList<>();
-        for (SysRole role : allRolesList) {
+        List<SysRoleDo> assginRoleList = new ArrayList<>();
+        for (SysRoleDo role : allRolesList) {
             //已分配
             if (existRoleIdList.contains(role.getId())) {
                 assginRoleList.add(role);
@@ -64,11 +64,11 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
     @Transactional
     @Override
     public void doAssign(AssginRoleVo assginRoleVo) {
-        sysUserRoleMapper.delete(new LambdaQueryWrapper<SysUserRole>().eq(SysUserRole::getUserId, assginRoleVo.getUserId()));
+        sysUserRoleMapper.delete(new LambdaQueryWrapper<SysUserRoleDo>().eq(SysUserRoleDo::getUserId, assginRoleVo.getUserId()));
 
         for (Long roleId : assginRoleVo.getRoleIdList()) {
             if (null == roleId) continue;
-            SysUserRole userRole = new SysUserRole();
+            SysUserRoleDo userRole = new SysUserRoleDo();
             userRole.setUserId(assginRoleVo.getUserId());
             userRole.setRoleId(roleId);
             sysUserRoleMapper.insert(userRole);

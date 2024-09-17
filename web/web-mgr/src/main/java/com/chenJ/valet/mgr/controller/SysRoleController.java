@@ -4,7 +4,7 @@ import com.chenJ.valet.common.annotation.Log;
 import com.chenJ.valet.common.enums.BusinessType;
 import com.chenJ.valet.common.result.Result;
 import com.chenJ.valet.mgr.service.SysRoleService;
-import com.chenJ.valet.model.entity.system.SysRole;
+import com.chenJ.valet.model.entity.system.SysRoleDo;
 import com.chenJ.valet.model.query.system.SysRoleQuery;
 import com.chenJ.valet.model.vo.system.AssginRoleVo;
 import io.swagger.v3.oas.annotations.Operation;
@@ -30,8 +30,8 @@ public class SysRoleController {
 
     @Operation(summary = "获取全部角色列表")
     @GetMapping("findAll")
-    public Result<List<SysRole>> findAll() {
-        List<SysRole> roleList = sysRoleService.findAll();
+    public Result<List<SysRoleDo>> findAll() {
+        List<SysRoleDo> roleList = sysRoleService.findAll();
         return Result.ok(roleList);
     }
 
@@ -54,7 +54,7 @@ public class SysRoleController {
     @Operation(summary = "获取")
     @GetMapping("getById/{id}")
     public Result getById(@PathVariable Long id) {
-        SysRole role = sysRoleService.getById(id);
+        SysRoleDo role = sysRoleService.getById(id);
         return Result.ok(role);
     }
 
@@ -62,7 +62,7 @@ public class SysRoleController {
     @PreAuthorize("hasAuthority('bnt.sysRole.add')")
     @Operation(summary = "新增角色")
     @PostMapping("save")
-    public Result save(@RequestBody @Validated SysRole role) {
+    public Result save(@RequestBody @Validated SysRoleDo role) {
         sysRoleService.save(role);
         return Result.ok();
     }
@@ -71,7 +71,7 @@ public class SysRoleController {
     @PreAuthorize("hasAuthority('bnt.sysRole.update')")
     @Operation(summary = "修改角色")
     @PutMapping("update")
-    public Result update(@RequestBody SysRole role) {
+    public Result update(@RequestBody SysRoleDo role) {
         sysRoleService.update(role);
         return Result.ok();
     }

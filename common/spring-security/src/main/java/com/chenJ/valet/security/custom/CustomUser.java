@@ -1,6 +1,6 @@
 package com.chenJ.valet.security.custom;
 
-import com.chenJ.valet.model.entity.system.SysUser;
+import com.chenJ.valet.model.entity.system.SysUserDo;
 import org.springframework.security.core.userdetails.User;
 
 import java.util.ArrayList;
@@ -10,18 +10,18 @@ public class CustomUser extends User {
     /**
      * 我们自己的用户实体对象，要调取用户信息时直接获取这个实体对象。（这里我就不写get/set方法了）
      */
-    private SysUser sysUser;
+    private SysUserDo sysUser;
 
-    public CustomUser(SysUser sysUser) {
+    public CustomUser(SysUserDo sysUser) {
         super(sysUser.getUsername(), sysUser.getPassword(), new ArrayList<>());
         this.sysUser = sysUser;
     }
 
-    public SysUser getSysUser() {
+    public SysUserDo getSysUser() {
         return sysUser;
     }
 
-    public void setSysUser(SysUser sysUser) {
+    public void setSysUser(SysUserDo sysUser) {
         this.sysUser = sysUser;
     }
 

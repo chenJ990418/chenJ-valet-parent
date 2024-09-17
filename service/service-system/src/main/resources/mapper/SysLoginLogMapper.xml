@@ -6,7 +6,7 @@
 
 <mapper namespace="com.chenJ.valet.system.mapper.SysLoginLogMapper">
 
-    <resultMap id="sysLoginLogMap" type="com.chenJ.valet.model.entity.system.SysLoginLog" autoMapping="true">
+    <resultMap id="sysLoginLogMap" type="com.chenJ.valet.model.entity.system.SysLoginLogDo" autoMapping="true">
     </resultMap>
 
     <!-- 用于select查询公用抽取的列 -->

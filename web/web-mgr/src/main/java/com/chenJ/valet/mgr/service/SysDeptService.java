@@ -1,22 +1,22 @@
 package com.chenJ.valet.mgr.service;
 
-import com.chenJ.valet.model.entity.system.SysDept;
+import com.chenJ.valet.model.entity.system.SysDeptDo;
 
 import java.util.List;
 
 public interface SysDeptService {
 
-    List<SysDept> findNodes();
+    List<SysDeptDo> findNodes();
 
-    List<SysDept> findUserNodes();
+    List<SysDeptDo> findUserNodes();
 
     void updateStatus(Long id, Integer status);
 
-    SysDept getById(Long id);
+    SysDeptDo getById(Long id);
 
-    void save(SysDept sysDept);
+    void save(SysDeptDo sysDept);
 
-    void update(SysDept sysDept);
+    void update(SysDeptDo sysDept);
 
     void remove(Long id);
 }

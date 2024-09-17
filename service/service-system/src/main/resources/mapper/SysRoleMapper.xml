@@ -6,7 +6,7 @@
 
 <mapper namespace="com.chenJ.valet.system.mapper.SysRoleMapper">
 
-    <resultMap id="RoleMap" type="com.chenJ.valet.model.entity.system.SysRole" autoMapping="true">
+    <resultMap id="RoleMap" type="com.chenJ.valet.model.entity.system.SysRoleDo" autoMapping="true">
     </resultMap>
 
     <!-- 用于select查询公用抽取的列 -->
